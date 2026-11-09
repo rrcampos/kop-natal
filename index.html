@@ -8,15 +8,15 @@
 <script>
 // ===== medição: preencher os IDs e publicar; vazio = não carrega nada =====
 var PIXEL_ID = ''; // Meta, só os números
-var GA4_ID = '';   // Google Analytics, G-XXXXXXXXXX
+var GTAG_ID = 'GTM-5SXS32Z3'; // tag do Google (contêiner com o GA4 G-K3N4SBQF5Y)
 if (PIXEL_ID) {
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', PIXEL_ID); fbq('track', 'PageView');
 }
-if (GA4_ID) {
-  var gs = document.createElement('script'); gs.async = true; gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID; document.head.appendChild(gs);
+if (GTAG_ID) { // snippet do Google, como veio: a configuração do GA4 mora no contêiner
+  var gs = document.createElement('script'); gs.async = true; gs.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTAG_ID; document.head.appendChild(gs);
   window.dataLayer = window.dataLayer || []; window.gtag = function () { dataLayer.push(arguments); };
-  gtag('js', new Date()); gtag('config', GA4_ID);
+  gtag('js', new Date());
 }
 // um evento, os dois destinos: nome Meta (padrão ou custom) e nome GA4
 function medir(meta, ga, params) {
