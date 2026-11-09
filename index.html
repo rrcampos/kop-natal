@@ -414,25 +414,29 @@ function simular() {
   const pan = um.filter((x) => x.itens[0].tipo === 'panettone'), cx = um.filter((x) => x.itens[0].tipo === 'caixa');
   const sug = [];
   if (pan[0]) sug.push({ tag: 'Natal', ...pan[0] });
+  else { // panettone sempre aparece: se nenhum cabe, o mais barato, mostrando quanto passa da verba
+    const pb = P.filter((p) => p.tipo === 'panettone').map((p) => ({ itens: [p], c: custo([p], N) })).sort((a, b) => a.c.liq - b.c.liq)[0];
+    if (pb) sug.push({ tag: pb.c.liq - V <= V * 0.35 ? 'Panettone · com um pouco mais' : 'Panettone', acima: true, ...pb });
+  }
   if (cx[0]) sug.push({ tag: 'Caixa de bombons', ...cx[0] });
   // kit: panettone + um item de linha, a dupla que mais aproveita a verba
   let kit = null;
   for (const a of P.filter((p) => p.tipo === 'panettone')) for (const b of P.filter((p) => p.tab === 'linha')) {
     const c = custo([a, b], N); if (c.liq <= V && (!kit || c.liq > kit.c.liq)) kit = { tag: 'Kit', itens: [a, b], c };
   }
-  const melhor1 = Math.max(...sug.map((s) => s.c.liq), 0);
+  const melhor1 = Math.max(...sug.filter((s) => !s.acima).map((s) => s.c.liq), 0);
   if (kit && kit.c.liq > melhor1 * 1.08) sug.push(kit);
   else { const eco = um.find((x) => x.c.liq <= V * 0.8 && ['panettone', 'caixa'].includes(x.itens[0].tipo) && !sug.some((s) => s.itens[0] === x.itens[0])); if (eco) sug.push({ tag: 'Sobra verba', ...eco }); }
-  if (!sug.length) { const m = um.filter((x) => ['mimo', 'natal'].includes(x.itens[0].tipo)); if (m[0]) sug.push({ tag: 'Lembrança para todos', ...m[0] }); if (m[2]) sug.push({ tag: 'Mais econômico', ...m[2] }); }
+  if (!sug.some((s) => !s.acima)) { const m = um.filter((x) => ['mimo', 'natal'].includes(x.itens[0].tipo)); if (m[0]) sug.push({ tag: 'Lembrança para todos', ...m[0] }); if (m[2]) sug.push({ tag: 'Mais econômico', ...m[2] }); }
 
   if (!sug.length) { cards.innerHTML = '<p class="vazio">Com essa verba por pessoa, fale com a loja: ela monta uma lembrança sob medida.</p>'; mais.hidden = true; estado.verba = { V, N, sug }; return; }
-  const ordem = [...sug].sort((a, b) => b.c.liq - a.c.liq); const top = ordem[0];
+  const ordem = sug.filter((s) => !s.acima).sort((a, b) => b.c.liq - a.c.liq); const top = ordem[0] || sug[0];
   cards.innerHTML = sug.map((s, i) => `<button type="button" class="card ${s === top ? 'top' : ''}" data-sug="${i}" aria-label="Encomendar ${N} ${s.itens.map((p) => p.nome).join(' + ')} pelo WhatsApp">
     <div class="fotos">${s.itens.map(foto).join('')}</div>
     <div class="corpo"><span class="tag">${s.tag}</span>
     <h3>${s.itens.map((p) => p.nome).join(' + ')}</h3>
     <div class="preco"><b>${brl(s.c.un)}</b>por pessoa${s.c.d > 0.001 ? ` <s>${brl(s.c.bruto / N)}</s>` : ''}</div>
-    <div class="total">${N} presentes: ${brl(s.c.liq)}${s.c.d > 0.001 ? ` · ${pct(s.c.d)} off` : ''}${V - s.c.liq > 1 ? ` · sobra ${brl(V - s.c.liq)}` : ''}</div>
+    <div class="total">${N} presentes: ${brl(s.c.liq)}${s.c.d > 0.001 ? ` · ${pct(s.c.d)} off` : ''}${V - s.c.liq > 1 ? ` · sobra ${brl(V - s.c.liq)}` : ''}${s.c.liq - V > 1 ? ` · <b>${brl(s.c.liq - V)}</b> acima da verba` : ''}</div>
     <span class="pedir"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-1-2.2-1-.3-.1-.5-.2-.7.1l-1 1.3c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.8 5.1 2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.2-.6-.4z"/></svg>Encomendar esta opção</span></div></button>`).join('');
 
   // aumente sua verba: o presente mais barato que custe 12% a mais na loja que o melhor, se a verba extra for até 35%
