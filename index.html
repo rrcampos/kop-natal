@@ -5,6 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Natal das empresas · Kopenhagen Niterói</title>
 <meta name="description" content="Presentes de Natal Kopenhagen para empresas em Niterói: informe a verba e o número de pessoas e veja uma sugestão de presente com o desconto corporativo.">
+<script>
+// ===== medição: preencher os IDs e publicar; vazio = não carrega nada =====
+var PIXEL_ID = ''; // Meta, só os números
+var GA4_ID = '';   // Google Analytics, G-XXXXXXXXXX
+if (PIXEL_ID) {
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', PIXEL_ID); fbq('track', 'PageView');
+}
+if (GA4_ID) {
+  var gs = document.createElement('script'); gs.async = true; gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID; document.head.appendChild(gs);
+  window.dataLayer = window.dataLayer || []; window.gtag = function () { dataLayer.push(arguments); };
+  gtag('js', new Date()); gtag('config', GA4_ID);
+}
+// um evento, os dois destinos: nome Meta (padrão ou custom) e nome GA4
+function medir(meta, ga, params) {
+  params = params || {};
+  if (typeof fbq === 'function') fbq(['Contact', 'Lead', 'PageView'].indexOf(meta) > -1 ? 'track' : 'trackCustom', meta, params);
+  if (typeof gtag === 'function') gtag('event', ga, params);
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -475,7 +495,7 @@ function abrirWhats(texto) {
 document.getElementById('cards').addEventListener('click', (e) => {
   const c = e.target.closest('.card'); if (!c || !estado.verba) return;
   const s = estado.verba.sug[+c.dataset.sug];
-  if (typeof fbq === 'function') fbq('track', 'Contact', { origem: 'sugestao', opcao: s.tag });
+  medir('Contact', 'contato_whatsapp', { origem: 'sugestao', opcao: s.tag });
   estado.ultimaEncomenda = encomenda(s, estado.verba.N);
   abrirWhats(estado.ultimaEncomenda);
 });
@@ -494,6 +514,7 @@ function mensagem(origem) {
 }
 document.querySelectorAll('[data-wa]').forEach((a) => a.addEventListener('click', (e) => {
   e.preventDefault();
+  medir('Contact', 'contato_whatsapp', { origem: a.dataset.wa });
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem(a.dataset.wa))}`, '_blank');
 }));
 
@@ -555,7 +576,7 @@ simular(); contaProduto();
   var bt = zap.querySelector('.zap-bt'), f = zap.querySelector('.zap-form'), erro = zap.querySelector('.zap-erro'), tel = f.whatsapp;
   function abrir(s) {
     zap.classList.toggle('aberto', s); zap.classList.remove('dica'); bt.setAttribute('aria-expanded', s);
-    if (s) { if (typeof fbq === 'function') fbq('trackCustom', 'AbriuChat', { pagina: location.pathname }); setTimeout(function () { f.nome.focus({ preventScroll: true }); }, 50); }
+    if (s) { medir('AbriuChat', 'abriu_chat'); setTimeout(function () { f.nome.focus({ preventScroll: true }); }, 50); }
   }
   bt.addEventListener('click', function () { abrir(!zap.classList.contains('aberto')); });
   zap.querySelector('.zap-fecha').addEventListener('click', function () { abrir(false); });
@@ -569,7 +590,7 @@ simular(); contaProduto();
     var nome = f.nome.value.trim(), emp = f.empresa.value.trim(), wa = tel.value.replace(/\D/g, '');
     if (nome.length < 2) { erro.textContent = 'Diga seu nome.'; return; }
     if (wa.length < 10 || wa.length > 11) { erro.textContent = 'Confira o WhatsApp com DDD.'; return; }
-    if (typeof fbq === 'function') { fbq('track', 'Contact', { origem: 'chat' }); fbq('track', 'Lead', { content_category: 'Chat Igor' }); }
+    medir('Contact', 'contato_whatsapp', { origem: 'chat' }); medir('Lead', 'generate_lead', { origem: 'chat' });
     // leva a simulação da aba aberta só se a pessoa simulou; senão, mensagem neutra (mensagem() decide)
     var aba = document.querySelector('.abas button.on'), origem = aba ? aba.dataset.aba : 'chat';
     var corpo = mensagem(origem).replace(/^Olá!\s*/, '');
