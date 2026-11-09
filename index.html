@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Natal das empresas · Kopenhagen Niterói</title>
+<meta name="description" content="Presentes de Natal Kopenhagen para empresas em Niterói: informe a verba e o número de pessoas e veja uma sugestão de presente com o desconto corporativo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--vinho:#A6112E;--vinho-esc:#7F000F;--creme:#FBF6F1;--rosa:#F3E4E2;--ouro:#CFA57A;--texto:#2B1A1A;--cinza:#6E5E5C;--linha:#E6D6D3}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Raleway,system-ui,sans-serif;background:var(--creme);color:var(--texto);line-height:1.5;-webkit-font-smoothing:antialiased;font-variant-numeric:lining-nums tabular-nums}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:40px;padding:15px 28px;font-family:inherit;font-size:16px;font-weight:600;text-decoration:none;cursor:pointer;border:0}
+.btn.ouro{background:var(--ouro);color:var(--vinho-esc)}
+.btn.vinho{background:var(--vinho);color:#fff}
+.btn.linha{border:1px solid rgba(255,255,255,.7);color:#fff;background:rgba(90,0,14,.55);backdrop-filter:blur(4px)}
+.kicker{font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:var(--vinho)}
+h2{font-weight:400;font-size:clamp(28px,3.6vw,40px);line-height:1.15;margin:8px 0 10px}
+h2 b{font-weight:700;color:var(--vinho)}
+section{padding:64px 0}
+
+/* topo + hero */
+.topo{position:absolute;inset:0 0 auto;z-index:3}
+.topo .wrap{display:flex;justify-content:space-between;align-items:center;height:72px}
+.topo .logo{display:flex;align-items:center;gap:14px;color:var(--ouro);text-decoration:none;font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase}
+.topo .logo img{width:128px}
+.topo .logo span{border-left:1px solid rgba(207,165,122,.55);padding:5px 0 5px 14px;margin-top:6px}
+.topo .wa{font-size:14px;font-weight:600;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.6);border-radius:40px;padding:8px 18px}
+.hero{position:relative;background:radial-gradient(ellipse at 30% 45%,#A82139 0%,#8C0F27 45%,#76061A 100%);color:#fff;overflow:hidden;min-height:min(max(560px,42vw),700px);display:flex;align-items:center}
+/* em tela muito larga a foto para de crescer na largura (proporção 1853x849) e encosta na direita; o vermelho do fundo completa a esquerda */
+/* em tela larga a foto acompanha a coluna do texto: começa 60 px depois da margem esquerda do conteúdo (1120 px) */
+.hero .foto{position:absolute;top:0;right:max(0px,calc(50% - 1028px));bottom:0;height:100%;width:min(100%,calc(min(max(560px,42vw),700px) * 2.183));-webkit-mask-image:linear-gradient(to right,transparent 0,#000 18%);mask-image:linear-gradient(to right,transparent 0,#000 18%)}
+.hero .foto img{width:100%;height:100%;object-fit:cover;object-position:right top}
+/* quando a foto não encosta mais na borda direita (tela acima de 2056 px), a direita dela também se dissolve no fundo */
+@media (min-width:2057px){.hero .foto{-webkit-mask-image:linear-gradient(to right,transparent 0,#000 18%,#000 84%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,#000 18%,#000 84%,transparent 100%)}}
+.hero:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(110,0,16,.78) 0%,rgba(110,0,16,.55) calc(50% - 260px),rgba(110,0,16,0) calc(50% + 30px))}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-top:96px;padding-bottom:64px}
+.hero .txt{max-width:470px}
+.hero .kicker{color:var(--ouro)}
+.hero h1{font-weight:400;font-size:clamp(36px,5vw,58px);line-height:1.05;margin:14px 0 18px}
+.hero h1 b{font-weight:700}
+.hero p{font-size:19px;opacity:.94;max-width:420px}
+.hero .acoes{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+
+/* faixa de vantagens */
+.vant{background:#fff;border-bottom:1px solid var(--linha)}
+.vant ul{list-style:none;display:grid;grid-template-columns:repeat(4,1fr)}
+.vant li{padding:22px 16px;text-align:center;font-size:14px;color:var(--cinza);border-left:1px solid var(--linha)}
+.vant li:first-child{border-left:0}
+.vant b{display:block;font-size:20px;color:var(--vinho);font-weight:700}
+
+/* simulador */
+.calc{background:#fff;border:1px solid var(--linha);border-radius:20px;margin-top:26px;overflow:hidden}
+.abas{display:flex;border-bottom:1px solid var(--linha)}
+.abas button{flex:1;background:none;border:0;padding:18px 12px;font-family:inherit;font-size:16px;font-weight:600;color:var(--cinza);cursor:pointer;border-bottom:3px solid transparent}
+.abas button.on{color:var(--vinho);border-bottom-color:var(--vinho)}
+.painel{padding:28px}
+.painel[hidden]{display:none}
+.campos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cinza);margin-bottom:6px}
+input,select{width:100%;font-family:inherit;font-size:20px;font-weight:600;color:var(--texto);padding:14px 16px;border:1px solid var(--linha);border-radius:12px;background:var(--creme)}
+select{font-size:16px}
+input,button{font-variant-numeric:lining-nums tabular-nums}
+input:focus,select:focus{outline:2px solid var(--ouro);border-color:var(--ouro)}
+.porpessoa{margin:18px 0 4px;font-size:15px;color:var(--cinza)}
+.porpessoa b{color:var(--vinho)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.card{font:inherit;color:inherit;text-align:left;padding:0;cursor:pointer;border:1px solid var(--linha);border-radius:16px;background:#fff;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s,box-shadow .2s,transform .2s}
+.card:hover{border-color:var(--vinho);box-shadow:0 10px 30px rgba(166,17,46,.14);transform:translateY(-2px)}
+.card .pedir{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:11px;border-radius:40px;background:linear-gradient(135deg,#E3C29C,#B88A5C);color:var(--vinho-esc);font-weight:700;font-size:14.5px}
+.card .pedir svg{width:18px;height:18px}
+.card.top{border-color:var(--vinho);box-shadow:0 8px 28px rgba(166,17,46,.10)}
+.card .fotos{display:flex;background:#fff;aspect-ratio:4/3;padding:10px;gap:4px}
+.card .fotos img{flex:1;min-width:0;object-fit:contain}
+.card .sem{flex:1;display:flex;align-items:center;justify-content:center;background:var(--rosa);border-radius:10px}
+.card .sem img{width:45%;opacity:.55}
+.card .corpo{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1;border-top:1px solid var(--linha)}
+.card .tag{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--vinho)}
+.card h3{font-size:17px;font-weight:600;margin:6px 0 10px;line-height:1.25}
+.card .preco{font-size:14px;color:var(--cinza);margin-top:auto}
+.card .preco b{font-size:24px;color:var(--vinho);margin-right:6px}
+.card .preco s{opacity:.7}
+.card .total{font-size:13px;color:var(--cinza);margin-top:4px}
+.mais{margin-top:16px;background:var(--vinho);color:#fff;border-radius:16px;padding:16px 20px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.mais p{font-size:16px;max-width:680px}
+.mais p b{color:var(--ouro)}
+.mais[hidden]{display:none}
+.fechar{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:22px}
+.nota{font-size:13px;color:var(--cinza);max-width:520px}
+.vazio{color:var(--cinza);font-size:16px;padding:10px 0}
+.tipos{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 14px}
+.tipos button{font:inherit;font-size:14px;font-weight:600;color:var(--cinza);background:var(--creme);border:1px solid var(--linha);border-radius:40px;padding:8px 16px;cursor:pointer}
+.tipos button.on{background:var(--vinho);border-color:var(--vinho);color:#fff}
+.vitrine{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;max-height:440px;overflow-y:auto;padding:2px 4px 2px 2px}
+.item{font:inherit;text-align:left;background:#fff;border:1px solid var(--linha);border-radius:14px;padding:10px;cursor:pointer;display:flex;flex-direction:column;gap:6px;position:relative;color:var(--texto)}
+.item:hover{border-color:var(--ouro)}
+.item.on{border:2px solid var(--vinho);padding:9px;box-shadow:0 6px 18px rgba(166,17,46,.12)}
+.item.on:after{content:"✓";position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:var(--vinho);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center}
+.item .im{display:flex;aspect-ratio:1;align-items:center;justify-content:center}
+.item .im img{width:100%;height:100%;object-fit:contain}
+.item .im .sem{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--rosa);border-radius:10px}
+.item .im .sem img{width:58%;height:auto;opacity:.45}
+.item .nm{font-size:13.5px;font-weight:600;line-height:1.3}
+.item .nm small{display:block;font-weight:400;color:var(--cinza);font-size:12px}
+.item .pr{font-size:14px;font-weight:700;color:var(--vinho);margin-top:auto}
+.conta{margin-top:18px}
+.conta .ft{display:none}
+.conta .ft{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:8px;aspect-ratio:1}
+.conta .ft img{width:100%;height:100%;object-fit:contain}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.nums div{background:var(--creme);border-radius:14px;padding:14px 16px}
+.nums span{font-size:13px;color:var(--cinza);display:block}
+.nums b{font-size:22px}
+.nums .eco b{color:var(--vinho)}
+.faixas{margin-top:22px;font-size:14px;color:var(--cinza)}
+.faixas summary{cursor:pointer;font-weight:600;color:var(--vinho)}
+.faixas table{border-collapse:collapse;margin-top:10px;width:100%;max-width:620px}
+.faixas td,.faixas th{padding:7px 10px 7px 0;text-align:left;border-top:1px solid var(--linha);font-weight:400}
+.faixas th{font-weight:600;color:var(--texto)}
+
+/* black friday */
+.black{background:#151112;color:#fff;padding:0}
+.black .wrap{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;padding-top:56px;padding-bottom:56px}
+.black img{border-radius:18px;width:100%}
+.black .kicker{color:var(--ouro)}
+.black h2 b{color:var(--ouro)}
+.black p{color:#d9cfcd;font-size:18px;max-width:440px}
+
+/* passos */
+.passos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.passo{border-top:2px solid var(--vinho);padding-top:14px}
+.passo span{font-size:13px;font-weight:700;color:var(--ouro);letter-spacing:.14em}
+.passo h3{font-size:19px;margin:4px 0 4px}
+.passo p{font-size:15px;color:var(--cinza)}
+
+.final{background:linear-gradient(100deg,#6E0010,#8E0E28);color:#fff;text-align:center}
+.final img{width:180px;margin:0 auto 12px}
+.final h2{color:#fff}
+.final p{opacity:.9;margin-bottom:24px}
+footer{padding:26px 0;font-size:13px;color:var(--cinza)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:860px){
+  /* no celular: texto em cima, presentes encostados no fim da faixa vermelha */
+  .hero{display:flex;flex-direction:column;min-height:0;padding:0}
+  .hero:before{display:none}
+  .hero .foto{display:block;order:2;position:relative;top:auto;right:auto;bottom:auto;width:100%;height:auto;margin-top:-8px;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 24%);mask-image:linear-gradient(to bottom,transparent 0,#000 24%)}
+  .hero .foto img{display:block}
+  .hero .foto img{height:auto;aspect-ratio:1353/809}
+  .hero .wrap{order:1;padding-top:100px;padding-bottom:20px;margin-top:0}
+  .cards,.passos{grid-template-columns:1fr}
+  .vant ul{grid-template-columns:1fr 1fr}
+  .vant li:nth-child(3){border-left:0}
+  .vant li{border-top:1px solid var(--linha)}
+  .black .wrap{grid-template-columns:1fr;gap:24px}
+  .nums{grid-template-columns:1fr 1fr}
+  /* no celular a vitrine vira uma fileira que desliza para o lado */
+  .vitrine{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:42%;overflow-x:auto;overflow-y:hidden;max-height:none;scroll-snap-type:x mandatory;padding-bottom:8px}
+  .item{scroll-snap-align:start}
+  .conta .ft{max-width:220px}
+}
+@media (max-width:520px){
+  .campos{grid-template-columns:1fr}
+  .painel{padding:18px}
+  .topo .logo img{width:106px}
+  .topo .logo{gap:10px;font-size:10px}
+  .topo .logo span{padding-left:10px}
+  .topo .wa{padding:7px 14px;font-size:13px}
+  .abas button{font-size:14px}
+  .card .fotos{aspect-ratio:16/10}
+}
+
+/* Chat do Igor: bolinha do WhatsApp que acompanha a rolagem, no molde do Círculo Concept e do site da DI.
+   Pede nome e WhatsApp e abre a conversa já com o nome e a simulação. Avatar provisório até a foto do Igor. */
+.zap{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:50}
+.zap-bt{width:60px;height:60px;border-radius:50%;border:2px solid rgba(255,255,255,.9);background:linear-gradient(135deg,#E3C29C,#B88A5C);color:var(--vinho-esc);display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 24px rgba(127,0,15,.35)}
+.zap.dica .zap-bt{animation:zap-pulso 1.6s ease-out 2}
+@keyframes zap-pulso{0%{box-shadow:0 8px 24px rgba(127,0,15,.35),0 0 0 0 rgba(207,165,122,.7)}100%{box-shadow:0 8px 24px rgba(127,0,15,.35),0 0 0 18px rgba(207,165,122,0)}}
+.zap-bt svg{width:30px;height:30px}
+.zap-dica{position:absolute;right:70px;bottom:8px;border:1px solid rgba(207,165,122,.6);color:var(--vinho-esc)!important;white-space:nowrap;width:max-content;display:flex;align-items:center;gap:8px;background:#fff;color:var(--texto);font-size:14px;font-weight:600;padding:9px 13px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.16);opacity:0;transform:translateX(8px);transition:.3s;pointer-events:none}
+.zap.dica .zap-dica{opacity:1;transform:none}
+.zap-dica img{width:28px;height:28px;border-radius:50%;margin:-5px 0 -5px -6px}
+.zap-card{position:absolute;right:0;bottom:72px;width:min(330px,calc(100vw - 32px));background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.28);display:none}
+.zap.aberto .zap-card{display:block}
+.zap.aberto .zap-dica{display:none}
+.zap-topo{background:var(--vinho);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.zap-ava{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.85);flex:none}
+.zap-topo b{display:block;font-size:15.5px;line-height:1.3}
+.zap-topo small{font-size:12.5px;opacity:.85;line-height:1.3;display:block}
+.zap-fecha{margin-left:auto;background:none;border:0;color:#fff;font-size:24px;line-height:1;cursor:pointer;padding:4px}
+.zap-corpo{background:#EFE7DD;padding:16px}
+.zap-msg{background:#fff;border-radius:0 12px 12px 12px;padding:10px 12px;font-size:14.5px;line-height:1.45;max-width:92%}
+.zap-form{padding:12px 16px 16px}
+.zap-form input{width:100%;font:inherit;font-size:16px;font-weight:500;padding:11px 12px;border:1.5px solid var(--linha);border-radius:9px;margin-bottom:8px;background:#fff}
+.zap-form input:focus{outline:none;border-color:var(--ouro)}
+.zap-erro{color:#c0392b;font-size:13px;font-weight:700;margin:-2px 0 8px}
+.zap-erro:empty{display:none}
+.zap-ir{display:flex;width:100%;align-items:center;justify-content:center;gap:8px;padding:13px;border:0;border-radius:40px;background:linear-gradient(135deg,#E3C29C,#B88A5C);color:var(--vinho-esc);font:inherit;font-weight:700;cursor:pointer}
+.zap-ir svg{width:20px;height:20px}
+.zap-lgpd{font-size:11.5px;line-height:1.4;color:var(--cinza);margin-top:8px;text-align:center}
+@media(min-width:760px){.zap{right:24px;bottom:24px}}
+</style>
+</head>
+<body>
+
+<header class="topo"><div class="wrap">
+  <a class="logo" href="#"><img src="img/logo-kopenhagen.png" alt="Kopenhagen"><span>Niterói</span></a>
+  <a class="wa" href="#" data-wa="topo">WhatsApp</a>
+</div></header>
+
+<section class="hero">
+  <picture class="foto"><source media="(max-width:860px)" srcset="img/hero-panettones-mob.webp"><img src="img/hero-panettones-2x.webp" alt="Panettones Kopenhagen de Natal" width="1853" height="849"></picture>
+  <div class="wrap"><div class="txt">
+    <div class="kicker">Natal das empresas</div>
+    <h1>O Natal da sua equipe com <b>Kopenhagen</b>.</h1>
+    <p>Diga a verba e quantas pessoas. A gente sugere o presente, com até 20% de desconto.</p>
+    <div class="acoes">
+      <a class="btn ouro" href="#simular">Simular agora</a>
+      <a class="btn linha" href="#" data-wa="hero">Falar com a loja</a>
+    </div>
+  </div></div>
+</section>
+
+<div class="vant"><div class="wrap"><ul>
+  <li><b>até 20%</b>de desconto para empresas</li>
+  <li><b>6 lojas</b>em Niterói</li>
+  <li><b>Data marcada</b>para a entrega</li>
+  <li><b>WhatsApp</b>para fechar o pedido</li>
+</ul></div></div>
+
+<section id="simular"><div class="wrap">
+  <div class="kicker">Simulador</div>
+  <h2>Quanto presente cabe na <b>sua verba</b>?</h2>
+
+  <div class="calc">
+    <div class="abas" role="tablist">
+      <button class="on" data-aba="verba" role="tab">Tenho uma verba</button>
+      <button data-aba="produto" role="tab">Já sei o presente</button>
+    </div>
+
+    <div class="painel" id="p-verba">
+      <div class="campos">
+        <div><label for="verba">Verba total (R$)</label><input id="verba" inputmode="numeric" value="10.000"></div>
+        <div><label for="pessoas">Quantas pessoas</label><input id="pessoas" inputmode="numeric" value="80"></div>
+      </div>
+      <p class="porpessoa" id="porpessoa"></p>
+      <div class="cards" id="cards"></div>
+      <div class="mais" id="mais" hidden><p id="mais-txt"></p><button class="btn ouro" id="mais-btn" type="button">Ver com essa verba</button></div>
+      <div class="fechar">
+        <a class="btn vinho" href="#" data-wa="verba">Pedir proposta pelo WhatsApp</a>
+        <p class="nota">Sugestão com valores de referência. Itens, prazo e preço final a loja confirma na proposta.</p>
+      </div>
+    </div>
+
+    <div class="painel" id="p-produto" hidden>
+      <label>Escolha o presente</label>
+      <div class="tipos" id="tipos" role="tablist"></div>
+      <div class="vitrine" id="vitrine"></div>
+      <input type="hidden" id="produto">
+      <div class="campos" style="margin-top:20px">
+        <div><label for="qtd">Quantidade</label><input id="qtd" inputmode="numeric" value="50"></div>
+      </div>
+      <div class="conta"><div class="ft" id="ft"></div><div class="nums" id="nums"></div></div>
+      <div class="mais" id="mais2" hidden><p id="mais2-txt"></p></div>
+      <div class="fechar">
+        <a class="btn vinho" href="#" data-wa="produto">Pedir proposta pelo WhatsApp</a>
+        <p class="nota">Sugestão com valores de referência. Itens, prazo e preço final a loja confirma na proposta.</p>
+      </div>
+    </div>
+  </div>
+
+  <details class="faixas">
+    <summary>Ver a tabela de desconto</summary>
+    <table>
+      <tr><th>Valor do pedido</th><th>Natal (panettones e kits)</th><th>Linha</th></tr>
+      <tr><td>a partir de R$ 3 mil</td><td>7%</td><td>-</td></tr>
+      <tr><td>a partir de R$ 5 mil</td><td>10%</td><td>7%</td></tr>
+      <tr><td>a partir de R$ 8 mil</td><td>15%</td><td>7%</td></tr>
+      <tr><td>a partir de R$ 10 mil</td><td>15%</td><td>10%</td></tr>
+      <tr><td>a partir de R$ 12 mil</td><td>20%</td><td>10%</td></tr>
+      <tr><td>a partir de R$ 15 mil</td><td>20%</td><td>12%</td></tr>
+    </table>
+  </details>
+</div></section>
+
+<section class="black"><div class="wrap">
+  <img src="img/fatia.webp" alt="Fatia de panettone Kopenhagen" width="532" height="388" loading="lazy">
+  <div>
+    <div class="kicker">Black Friday</div>
+    <h2>Compre na Black, <b>receba na data combinada</b>.</h2>
+    <p>Feche o pedido em novembro e escolha com a loja quando a equipe recebe.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="kicker">Como funciona</div>
+  <h2>Três passos até <b>o presente</b>.</h2>
+  <div class="passos">
+    <div class="passo"><span>01</span><h3>Simule</h3><p>Verba e número de pessoas, ou o presente que você já quer.</p></div>
+    <div class="passo"><span>02</span><h3>Mande pelo WhatsApp</h3><p>A simulação vai pronta na mensagem.</p></div>
+    <div class="passo"><span>03</span><h3>Receba a proposta</h3><p>A loja confirma itens, desconto e data de entrega.</p></div>
+  </div>
+</div></section>
+
+<section class="final"><div class="wrap">
+  <img src="img/logo-kopenhagen.png" alt="Kopenhagen" loading="lazy">
+  <h2>Natal das empresas em Niterói</h2>
+  <p>Fale com a loja e receba a proposta para a sua equipe.</p>
+  <a class="btn ouro" href="#" data-wa="final">Falar no WhatsApp</a>
+</div></section>
+
+<footer><div class="wrap">
+  <span>Kopenhagen Niterói · franquia Kopenhagen</span>
+  <span>Imagens ilustrativas. Valores de referência, confirmados na proposta.</span>
+</div></footer>
+
+<script>
+// ===== a confirmar com a Kopenhagen Niterói antes de publicar =====
+const WHATSAPP = '5521000000000'; // FALTA: número do WhatsApp dos pedidos de empresa
+// Tabelas de desconto (print "Vendas Corporativas"). A partir do valor do pedido, vale a faixa. Cada tabela conta só os itens dela.
+const TAB = {
+  linha:   [[15000, .12], [10000, .10], [5000, .07]],
+  sazonal: [[12000, .20], [8000, .15], [5000, .10], [3000, .07]],
+};
+// Natal: preços do site kopenhagen.com.br em 03/11/2026. Linha: catálogo de setembro 2026. Fotos: site oficial.
+const P = [
+  ["Panettone Língua de Gato 914g",159.9,"panettone","sazonal","n-panettone-lingua-de-gato-914g.webp"],
+  ["Panettone Gotas de Chocolate 550g",99.9,"panettone","sazonal","n-panettone-gotas-de-chocolate-550g.webp"],
+  ["Panettone Frutas 500g",89.9,"panettone","sazonal","n-panettone-frutas-500g.webp"],
+  ["Petitcookie Especiarias 180g",69.9,"natal","sazonal","n-petitcookie-especiarias-180g.webp"],
+  ["Petittone Frutas 180g",80.5,"natal","sazonal","n-petittone-frutas-180g.webp"],
+  ["Panettone Trufado Chocolate 660g",139.9,"panettone","sazonal","n-panettone-trufado-chocolate-660g.webp"],
+  ["Panettone Avelã Chokonut 680g",139.9,"panettone","sazonal","n-panettone-avela-chokonut-680g.webp"],
+  ["Panettone Autêntico Língua de Gato 1.488 kg",209.9,"panettone","sazonal","n-panettone-autentico-lingua-de-gato-1-488kg.webp"],
+  ["Calendário do Advento 174g (12 dias)",139.9,"natal","sazonal","n-calendario-do-advento-174g-12-dias.webp"],
+  ["Panettone Chocolate Amargo com Frutas Vermelhas 690g",139.9,"panettone","sazonal","n-panettone-chocolate-amargo-com-frutas-vermelhas-69.webp"],
+  ["Papai Noel 100g",49.9,"natal","sazonal","n-papai-noel-100g.webp"],
+  ["Kit Trio que Marca (3 panettones)",349.9,"panettone","sazonal","n-kit-trio-que-marca-3-panettones.webp"],
+  ["Panettone Lajotinha 900g",159.9,"panettone","sazonal","n-panettone-lajotinha-900g.webp"],
+  ["Panettone Veneziano Limão e Amêndoas 890g",149.9,"panettone","sazonal","n-panettone-veneziano-limao-e-amendoas-890g.webp"],
+  ["Guirlanda Bombons Ganache 228g",139.9,"natal","sazonal","n-guirlanda-bombons-ganache-228g.webp"],
+  ["Panettone Veneziano Premium 1.106 kg",344.9,"panettone","sazonal","n-panettone-veneziano-premium-1-106kg.webp"],
+  ["Trufas Natalinas 180g",79.9,"natal","sazonal","n-trufas-natalinas-180g.webp"],
+  ["Panettone Premium Damasco 1.756 kg",344.9,"panettone","sazonal","n-panettone-premium-damasco-1-756kg.webp"],
+  ["Seleção Delícias ChokoNut 96g",49.9,"caixa","linha","l-selecao-delicias-chokonut-96g.webp"],
+  ["Seleção Delícias Cherry Brandy Mousse 96g",49.9,"caixa","linha",""],
+  ["Mil Delícias Língua de Gato Extra Cremoso 100g",49.9,"caixa","linha","l-mil-delicias-lingua-de-gato-extra-cremoso-100g.webp"],
+  ["Botões de Rosas ao Leite 40g",54.9,"caixa","linha","l-botoes-de-rosas-ao-leite-40g.webp"],
+  ["Seleção de Corações 84g",59.9,"caixa","linha","l-selecao-de-coracoes-84g.webp"],
+  ["Coleção Mil Delícias 144g",64.9,"caixa","linha","l-colecao-mil-delicias-144g.webp"],
+  ["Caixa Bombons São Paulo 70g",74.9,"caixa","linha",""],
+  ["Caixa Trufas Artesanais 135g",74.9,"caixa","linha","l-caixa-trufas-artesanais-135g.webp"],
+  ["Coração ao Leite 130g",79.9,"caixa","linha","l-coracao-ao-leite-130g.webp"],
+  ["Seleção de Tabletes 160g",79.9,"caixa","linha","l-selecao-de-tabletes-160g.webp"],
+  ["Coleção Mil Delícias Língua de Gato 204g",84.9,"caixa","linha","l-colecao-mil-delicias-lingua-de-gato-204g.webp"],
+  ["Caixa Bombons Cereja 150g",94.5,"caixa","linha",""],
+  ["Caixa Nuts 147g",94.9,"caixa","linha",""],
+  ["Caixa Rosas ao Leite 160g",94.9,"caixa","linha","l-caixa-rosas-ao-leite-160g.webp"],
+  ["Caixa Melt 180g",99.9,"caixa","linha","l-caixa-melt-180g.webp"],
+  ["Caixa Classics 180g",104.9,"caixa","linha","l-caixa-classics-180g.webp"],
+  ["Caixa Bombons Trufados de Vinho do Porto 180g",104.9,"caixa","linha",""],
+  ["Mix Língua de Gato 168g",104.9,"caixa","linha",""],
+  ["Caixa Pastilhas Degradê Duo 176g",104.9,"caixa","linha","l-caixa-pastilhas-degrade-duo-176g.webp"],
+  ["Lata Cookies Canela & Baunilha 220g",104.9,"caixa","linha","l-lata-cookies-canela-baunilha-220g.webp"],
+  ["Lata Special Nuts Avelã & Amendoim 180g",104.9,"caixa","linha","l-lata-special-nuts-avela-amendoim-180g.webp"],
+  ["Lata Special Nuts Amêndoa & Macadâmia 180g",104.9,"caixa","linha","l-lata-special-nuts-amendoa-macadamia-180g.webp"],
+  ["Caixa Bar Garrafinhas 160g",124.9,"caixa","linha","l-caixa-bar-garrafinhas-160g.webp"],
+  ["Pão de Mel 240g",124.9,"caixa","linha","l-pao-de-mel-240g.webp"],
+  ["Seleção de Bombons Castanha de Caju 225g",124.9,"caixa","linha","l-selecao-de-bombons-castanha-de-caju-225g.webp"],
+  ["Caixa Pastilhas Degradê 208g",124.9,"caixa","linha","l-caixa-pastilhas-degrade-208g.webp"],
+  ["Coleção Língua de Gato 206g",124.9,"caixa","linha",""],
+  ["Caixa Bombons Frutas e Pistache 301g",159.9,"caixa","linha","l-caixa-bombons-frutas-e-pistache-301g.webp"],
+  ["Caixa Bombons Collection 210g",179.9,"caixa","linha","l-caixa-bombons-collection-210g.webp"],
+  ["Caixa Coração e Rosas B&W 240g",199.9,"caixa","linha",""],
+  ["Caixa Gourmet Selection 284g",209.9,"caixa","linha","l-caixa-gourmet-selection-284g.webp"],
+  ["Caixa Bombons Ganache 304g",209.9,"caixa","linha","l-caixa-bombons-ganache-304g.webp"],
+  ["Coleção Língua de Gato 400g",244.9,"caixa","linha",""],
+  ["Mini Tablete 10g",4.9,"mimo","linha",""],
+  ["Mini Trufa 12g",4.9,"mimo","linha",""],
+  ["Nhá Benta Bombom 15g",9.9,"mimo","linha",""],
+  ["Colher Língua de Gato 10g",9.9,"mimo","linha",""],
+  ["Lajotinha 50g",24.9,"mimo","linha","l-lajotinha-50g.webp"],
+  ["Tablete Língua de Gato 90g",36.9,"mimo","linha","l-tablete-lingua-de-gato-90g.webp"],
+  ["Nhá Benta Tradicional 90g",59.9,"mimo","linha","l-nha-benta-tradicional-90g.webp"],
+  ["Pack Língua de Gato 170g",69.9,"mimo","linha","l-pack-lingua-de-gato-170g.webp"],
+  ["Trufas Língua de Gato 150g",74.9,"mimo","linha",""]
+].map(([nome, preco, tipo, tab, img]) => ({ nome, preco, tipo, tab, img }));
+
+const brl = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const num = (s) => { const n = parseFloat(String(s).replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '')); return isNaN(n) ? 0 : n; };
+const desc = (tab, bruto) => { for (const [min, d] of TAB[tab]) if (bruto >= min) return d; return 0; };
+const proxFaixa = (tab, bruto) => { const f = [...TAB[tab]].reverse().find(([min]) => bruto < min); return f ? { min: f[0], d: f[1] } : null; };
+const pct = (d) => Math.round(d * 100) + '%';
+// custo de dar os itens para n pessoas: cada tabela de desconto conta o valor dos seus itens
+function custo(itens, n) {
+  const por = {}; for (const p of itens) por[p.tab] = (por[p.tab] || 0) + p.preco * n;
+  let bruto = 0, liq = 0, dmax = 0;
+  for (const [t, b] of Object.entries(por)) { const d = desc(t, b); bruto += b; liq += b * (1 - d); dmax = Math.max(dmax, d); }
+  return { bruto, liq, d: bruto ? 1 - liq / bruto : 0, dmax, un: liq / n };
+}
+const foto = (p) => p.img ? `<img src="img/${p.img}" alt="${p.nome}" loading="lazy">` : `<div class="sem"><img src="img/logo-kopenhagen.png" alt=""></div>`;
+
+let estado = {};
+function simular() {
+  const V = num(document.getElementById('verba').value), N = Math.max(1, Math.round(num(document.getElementById('pessoas').value)));
+  const cards = document.getElementById('cards'), mais = document.getElementById('mais');
+  document.getElementById('porpessoa').innerHTML = `Verba por pessoa: <b>${brl(V / N)}</b>`;
+  const um = P.map((p) => ({ itens: [p], c: custo([p], N) })).filter((x) => x.c.liq <= V).sort((a, b) => b.c.liq - a.c.liq);
+  const pan = um.filter((x) => x.itens[0].tipo === 'panettone'), cx = um.filter((x) => x.itens[0].tipo === 'caixa');
+  const sug = [];
+  if (pan[0]) sug.push({ tag: 'Natal', ...pan[0] });
+  if (cx[0]) sug.push({ tag: 'Caixa de bombons', ...cx[0] });
+  // kit: panettone + um item de linha, a dupla que mais aproveita a verba
+  let kit = null;
+  for (const a of P.filter((p) => p.tipo === 'panettone')) for (const b of P.filter((p) => p.tab === 'linha')) {
+    const c = custo([a, b], N); if (c.liq <= V && (!kit || c.liq > kit.c.liq)) kit = { tag: 'Kit', itens: [a, b], c };
+  }
+  const melhor1 = Math.max(...sug.map((s) => s.c.liq), 0);
+  if (kit && kit.c.liq > melhor1 * 1.08) sug.push(kit);
+  else { const eco = um.find((x) => x.c.liq <= V * 0.8 && ['panettone', 'caixa'].includes(x.itens[0].tipo) && !sug.some((s) => s.itens[0] === x.itens[0])); if (eco) sug.push({ tag: 'Sobra verba', ...eco }); }
+  if (!sug.length) { const m = um.filter((x) => ['mimo', 'natal'].includes(x.itens[0].tipo)); if (m[0]) sug.push({ tag: 'Lembrança para todos', ...m[0] }); if (m[2]) sug.push({ tag: 'Mais econômico', ...m[2] }); }
+
+  if (!sug.length) { cards.innerHTML = '<p class="vazio">Com essa verba por pessoa, fale com a loja: ela monta uma lembrança sob medida.</p>'; mais.hidden = true; estado.verba = { V, N, sug }; return; }
+  const ordem = [...sug].sort((a, b) => b.c.liq - a.c.liq); const top = ordem[0];
+  cards.innerHTML = sug.map((s, i) => `<button type="button" class="card ${s === top ? 'top' : ''}" data-sug="${i}" aria-label="Encomendar ${N} ${s.itens.map((p) => p.nome).join(' + ')} pelo WhatsApp">
+    <div class="fotos">${s.itens.map(foto).join('')}</div>
+    <div class="corpo"><span class="tag">${s.tag}</span>
+    <h3>${s.itens.map((p) => p.nome).join(' + ')}</h3>
+    <div class="preco"><b>${brl(s.c.un)}</b>por pessoa${s.c.d > 0.001 ? ` <s>${brl(s.c.bruto / N)}</s>` : ''}</div>
+    <div class="total">${N} presentes: ${brl(s.c.liq)}${s.c.d > 0.001 ? ` · ${pct(s.c.d)} off` : ''}${V - s.c.liq > 1 ? ` · sobra ${brl(V - s.c.liq)}` : ''}</div>
+    <span class="pedir"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-1-2.2-1-.3-.1-.5-.2-.7.1l-1 1.3c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.8 5.1 2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.2-.6-.4z"/></svg>Encomendar esta opção</span></div></button>`).join('');
+
+  // aumente sua verba: o presente mais barato que custe 12% a mais na loja que o melhor, se a verba extra for até 35%
+  const ref = top.itens.length === 1 ? top.itens[0] : null, base = top.c.bruto / N;
+  const acima = P.filter((p) => ['panettone', 'caixa'].includes(p.tipo) && p !== ref).map((p) => ({ p, c: custo([p], N) })).filter((x) => x.p.preco >= base * 1.12).sort((a, b) => a.c.liq - b.c.liq);
+  const alvo = acima[0];
+  if (alvo && alvo.c.liq - V <= V * 0.35) {
+    const extra = Math.max(100, Math.ceil((alvo.c.liq - V) / 100) * 100);
+    const faixa = alvo.c.d > top.c.d + 0.001 ? ` e o desconto sobe para <b>${pct(alvo.c.d)}</b>` : '';
+    document.getElementById('mais-txt').innerHTML = `Aumente sua verba e leve muito mais: com <b>${brl(extra)}</b> a mais, cada pessoa recebe <b>${alvo.p.nome}</b>${faixa}.`;
+    mais.hidden = false; estado.novaVerba = V + extra;
+  } else mais.hidden = true;
+  estado.verba = { V, N, sug };
+}
+
+function contaProduto() {
+  const p = P[+document.getElementById('produto').value], n = Math.max(1, Math.round(num(document.getElementById('qtd').value)));
+  const c = custo([p], n);
+  document.getElementById('ft').innerHTML = foto(p);
+  document.getElementById('nums').innerHTML = `<div><span>Preço de loja</span><b>${brl(c.bruto)}</b></div><div><span>Desconto</span><b>${pct(c.d)}</b></div>
+    <div class="eco"><span>Valor para empresa</span><b>${brl(c.liq)}</b></div><div><span>Por unidade</span><b>${brl(c.un)}</b></div>`;
+  const f = proxFaixa(p.tab, c.bruto), m2 = document.getElementById('mais2');
+  if (f) { const falta = Math.ceil((f.min - c.bruto) / p.preco); if (falta > 0 && f.min - c.bruto <= Math.max(c.bruto * 0.4, 1500)) { document.getElementById('mais2-txt').innerHTML = `Com mais <b>${falta}</b> ${falta > 1 ? 'unidades' : 'unidade'}, o desconto vai para <b>${pct(f.d)}</b>.`; m2.hidden = false; } else m2.hidden = true; } else m2.hidden = true;
+  estado.produto = { p, n, c };
+}
+
+function encomenda(s, N) {
+  const um = s.itens.length === 1, nome = s.itens.map((p) => p.nome).join(' + ');
+  const o_que = um ? `${N} unidades de ${nome}` : `${N} kits com ${nome}`;
+  return `Olá! Gostaria de encomendar ${o_que} para a minha empresa. Pela simulação da página do Natal das empresas, fica em ${brl(s.c.liq)}${s.c.d > 0.001 ? ` com ${pct(s.c.d)} de desconto` : ''} (${brl(s.c.un)} por pessoa). Pode me mandar a proposta?`;
+}
+function abrirWhats(texto) {
+  const link = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
+  if (matchMedia('(min-width:900px)').matches) window.open(link, '_blank', 'noopener'); else location.href = link;
+}
+document.getElementById('cards').addEventListener('click', (e) => {
+  const c = e.target.closest('.card'); if (!c || !estado.verba) return;
+  const s = estado.verba.sug[+c.dataset.sug];
+  if (typeof fbq === 'function') fbq('track', 'Contact', { origem: 'sugestao', opcao: s.tag });
+  estado.ultimaEncomenda = encomenda(s, estado.verba.N);
+  abrirWhats(estado.ultimaEncomenda);
+});
+function mensagem(origem) {
+  if (origem === 'verba' && estado.verba?.sug?.length) {
+    const { V, N, sug } = estado.verba;
+    return `Olá! Vim pela página do Natal das empresas. Tenho uma verba de ${brl(V)} para presentear ${N} pessoas. A simulação sugeriu: ${sug.map((s) => s.itens.map((p) => p.nome).join(' + ') + ' (' + brl(s.c.liq) + ')').join('; ')}. Pode me mandar uma proposta?`;
+  }
+  if (origem === 'produto' && estado.produto) {
+    const { p, n, c } = estado.produto;
+    return encomenda({ itens: [p], c }, n);
+  }
+  return 'Olá! Vim pela página do Natal das empresas e quero uma proposta de presentes para a minha empresa.';
+}
+document.querySelectorAll('[data-wa]').forEach((a) => a.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem(a.dataset.wa))}`, '_blank');
+}));
+
+document.querySelectorAll('.abas button').forEach((b) => b.addEventListener('click', () => {
+  document.querySelectorAll('.abas button').forEach((x) => x.classList.toggle('on', x === b));
+  document.getElementById('p-verba').hidden = b.dataset.aba !== 'verba';
+  document.getElementById('p-produto').hidden = b.dataset.aba !== 'produto';
+}));
+const fmt = (el) => { const n = num(el.value); el.value = n ? n.toLocaleString('pt-BR') : ''; };
+['verba', 'pessoas'].forEach((id) => { const el = document.getElementById(id); el.addEventListener('input', simular); el.addEventListener('blur', () => fmt(el)); });
+document.getElementById('mais-btn').addEventListener('click', () => { const v = document.getElementById('verba'); v.value = estado.novaVerba.toLocaleString('pt-BR'); simular(); });
+// vitrine no lugar da lista suspensa: abas por tipo, cartões com foto, nome e preço de loja
+const sel = document.getElementById('produto'); // guarda o índice escolhido (input oculto)
+const GRUPOS = [['panettone', 'Panettones e kits'], ['natal', 'Natal'], ['caixa', 'Caixas e latas'], ['mimo', 'Lembranças']];
+const nomeCurto = (n) => n.replace(/\s+(\d+[.,]?\d*\s*k?g)\b/i, '<small>$1</small>');
+function vitrine(tipo) {
+  document.querySelectorAll('#tipos button').forEach((b) => b.classList.toggle('on', b.dataset.tipo === tipo));
+  document.getElementById('vitrine').innerHTML = P.map((p, i) => p.tipo !== tipo ? '' :
+    `<button type="button" class="item ${String(i) === sel.value ? 'on' : ''}" data-i="${i}" aria-pressed="${String(i) === sel.value}">
+      <span class="im">${foto(p)}</span><span class="nm">${nomeCurto(p.nome)}</span><span class="pr">${brl(p.preco)}</span></button>`).join('');
+}
+document.getElementById('tipos').innerHTML = GRUPOS.map(([t, r]) => `<button type="button" data-tipo="${t}">${r}</button>`).join('');
+document.getElementById('tipos').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) vitrine(b.dataset.tipo); });
+document.getElementById('vitrine').addEventListener('click', (e) => {
+  const b = e.target.closest('.item'); if (!b) return;
+  sel.value = b.dataset.i;
+  document.querySelectorAll('#vitrine .item').forEach((x) => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
+  contaProduto();
+});
+sel.value = String(P.findIndex((p) => p.nome.startsWith('Panettone Trufado')));
+vitrine('panettone');
+document.getElementById('qtd').addEventListener('input', contaProduto);
+simular(); contaProduto();
+</script>
+<div class="zap" id="zap">
+  <div class="zap-card" role="dialog" aria-label="Conversar com o Igor no WhatsApp">
+    <div class="zap-topo">
+      <img class="zap-ava" src="img/igor-avatar.svg" alt="" width="42" height="42">
+      <div><b>Igor</b><small>Kopenhagen Niterói · Empresas</small></div>
+      <button class="zap-fecha" type="button" aria-label="Fechar">×</button>
+    </div>
+    <div class="zap-corpo"><p class="zap-msg">Oi! Sou o Igor, da Kopenhagen Niterói. Vou montar a proposta de Natal da sua empresa. Me diz seu nome e WhatsApp que a conversa já abre comigo, com a sua simulação.</p></div>
+    <form class="zap-form" novalidate>
+      <input name="nome" type="text" autocomplete="name" placeholder="Seu nome" aria-label="Seu nome" maxlength="80">
+      <input name="empresa" type="text" autocomplete="organization" placeholder="Empresa (opcional)" aria-label="Empresa" maxlength="80">
+      <input name="whatsapp" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Seu WhatsApp com DDD" aria-label="Seu WhatsApp com DDD">
+      <p class="zap-erro" role="alert"></p>
+      <button class="zap-ir" type="submit"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-1-2.2-1-.3-.1-.5-.2-.7.1l-1 1.3c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.8 5.1 2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.2-.6-.4z"/></svg>Conversar no WhatsApp</button>
+      <p class="zap-lgpd">Seu nome e WhatsApp servem só para o Igor te responder.</p>
+    </form>
+  </div>
+  <span class="zap-dica"><img src="img/igor-avatar.svg" alt="" width="28" height="28"><span id="zap-dica-txt">Fale com a gente</span></span>
+  <button class="zap-bt" type="button" aria-label="Falar com o Igor no WhatsApp" aria-expanded="false"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-1-2.2-1-.3-.1-.5-.2-.7.1l-1 1.3c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.8 5.1 2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.2-.6-.4z"/></svg></button>
+</div>
+<script>
+(function () {
+  'use strict';
+  var zap = document.getElementById('zap');
+  var bt = zap.querySelector('.zap-bt'), f = zap.querySelector('.zap-form'), erro = zap.querySelector('.zap-erro'), tel = f.whatsapp;
+  function abrir(s) {
+    zap.classList.toggle('aberto', s); zap.classList.remove('dica'); bt.setAttribute('aria-expanded', s);
+    if (s) { if (typeof fbq === 'function') fbq('trackCustom', 'AbriuChat', { pagina: location.pathname }); setTimeout(function () { f.nome.focus({ preventScroll: true }); }, 50); }
+  }
+  bt.addEventListener('click', function () { abrir(!zap.classList.contains('aberto')); });
+  zap.querySelector('.zap-fecha').addEventListener('click', function () { abrir(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && zap.classList.contains('aberto')) abrir(false); });
+  tel.addEventListener('input', function () {
+    var d = tel.value.replace(/\D/g, '').slice(0, 11);
+    tel.value = d.length > 6 ? '(' + d.slice(0, 2) + ') ' + d.slice(2, d.length - 4) + '-' + d.slice(-4) : d.length > 2 ? '(' + d.slice(0, 2) + ') ' + d.slice(2) : d;
+  });
+  f.addEventListener('submit', function (e) {
+    e.preventDefault(); erro.textContent = '';
+    var nome = f.nome.value.trim(), emp = f.empresa.value.trim(), wa = tel.value.replace(/\D/g, '');
+    if (nome.length < 2) { erro.textContent = 'Diga seu nome.'; return; }
+    if (wa.length < 10 || wa.length > 11) { erro.textContent = 'Confira o WhatsApp com DDD.'; return; }
+    if (typeof fbq === 'function') { fbq('track', 'Contact', { origem: 'chat' }); fbq('track', 'Lead', { content_category: 'Chat Igor' }); }
+    // a mensagem leva a simulação da aba que está aberta
+    var aba = document.querySelector('.abas button.on'), origem = aba ? aba.dataset.aba : 'chat';
+    var corpo = mensagem(origem).replace(/^Olá!\s*/, '');
+    var texto = 'Olá! Sou ' + nome.split(' ')[0] + (emp ? ', da ' + emp : '') + '. ' + corpo;
+    window.ultimaMsgChat = texto;
+    var link = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto);
+    if (matchMedia('(min-width:900px)').matches) window.open(link, '_blank', 'noopener'); else location.href = link;
+    abrir(false);
+  });
+  // a dica acompanha a rolagem: cada trecho tem uma chamada para a ação, mostrada uma vez, por 5 segundos
+  var txt = document.getElementById('zap-dica-txt'), tempo = null;
+  function dica(t) {
+    if (zap.classList.contains('aberto')) return;
+    txt.textContent = t; zap.classList.remove('dica'); void zap.offsetWidth; zap.classList.add('dica');
+    clearTimeout(tempo); tempo = setTimeout(function () { zap.classList.remove('dica'); }, 5000);
+  }
+  // ordem das chamadas: a primeira sai quando o simulador entra na tela (decisão do Renato, 03/11)
+  var chamadas = [
+    ['.calc', 'Fale com a gente pelo WhatsApp', innerWidth < 860 ? 0.85 : 0.6], // no celular o título do simulador ocupa mais altura
+    ['#cards', 'Gostou da sugestão? Peça sua proposta'],
+    ['.black', 'Garanta o Natal da equipe na Black'],
+    ['.passos', 'Monte seu pedido com o Igor'],
+  ];
+  // nada no topo nem na faixa de vantagens; 8 segundos entre um aviso e outro
+  var vistos = {}, ultimo = 0;
+  function olhar() {
+    if (scrollY < 40 || Date.now() - ultimo < 8000) return;
+    for (var i = 0; i < chamadas.length; i++) {
+      var c = chamadas[i];
+      if (vistos[c[0]]) continue;
+      var el = document.querySelector(c[0]); if (!el) continue;
+      var r = el.getBoundingClientRect();
+      if (r.top < innerHeight * (c[2] || 0.6) && r.bottom > 0) { vistos[c[0]] = 1; ultimo = Date.now(); dica(c[1]); break; }
+    }
+  }
+  // confere durante a rolagem (no máximo a cada 150 ms), não só quando ela para: quem rola sem pausa também vê o aviso
+  var agendado = null;
+  addEventListener('scroll', function () { if (agendado) return; agendado = setTimeout(function () { agendado = null; olhar(); }, 150); }, { passive: true });
+})();
+</script>
+</body>
+</html>
