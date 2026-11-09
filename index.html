@@ -475,12 +475,14 @@ document.getElementById('cards').addEventListener('click', (e) => {
   estado.ultimaEncomenda = encomenda(s, estado.verba.N);
   abrirWhats(estado.ultimaEncomenda);
 });
+// a simulação só entra na mensagem se a pessoa mexeu nela (os campos vêm pré-preenchidos)
+const mexeu = { verba: false, produto: false };
 function mensagem(origem) {
-  if (origem === 'verba' && estado.verba?.sug?.length) {
+  if (origem === 'verba' && mexeu.verba && estado.verba?.sug?.length) {
     const { V, N, sug } = estado.verba;
     return `Olá! Vim pela página do Natal das empresas. Tenho uma verba de ${brl(V)} para presentear ${N} pessoas. A simulação sugeriu: ${sug.map((s) => s.itens.map((p) => p.nome).join(' + ') + ' (' + brl(s.c.liq) + ')').join('; ')}. Pode me mandar uma proposta?`;
   }
-  if (origem === 'produto' && estado.produto) {
+  if (origem === 'produto' && mexeu.produto && estado.produto) {
     const { p, n, c } = estado.produto;
     return encomenda({ itens: [p], c }, n);
   }
@@ -497,8 +499,8 @@ document.querySelectorAll('.abas button').forEach((b) => b.addEventListener('cli
   document.getElementById('p-produto').hidden = b.dataset.aba !== 'produto';
 }));
 const fmt = (el) => { const n = num(el.value); el.value = n ? n.toLocaleString('pt-BR') : ''; };
-['verba', 'pessoas'].forEach((id) => { const el = document.getElementById(id); el.addEventListener('input', simular); el.addEventListener('blur', () => fmt(el)); });
-document.getElementById('mais-btn').addEventListener('click', () => { const v = document.getElementById('verba'); v.value = estado.novaVerba.toLocaleString('pt-BR'); simular(); });
+['verba', 'pessoas'].forEach((id) => { const el = document.getElementById(id); el.addEventListener('input', () => { mexeu.verba = true; simular(); }); el.addEventListener('blur', () => fmt(el)); });
+document.getElementById('mais-btn').addEventListener('click', () => { const v = document.getElementById('verba'); v.value = estado.novaVerba.toLocaleString('pt-BR'); mexeu.verba = true; simular(); });
 // vitrine no lugar da lista suspensa: abas por tipo, cartões com foto, nome e preço de loja
 const sel = document.getElementById('produto'); // guarda o índice escolhido (input oculto)
 const GRUPOS = [['panettone', 'Panettones e kits'], ['natal', 'Natal'], ['caixa', 'Caixas e latas'], ['mimo', 'Lembranças']];
@@ -513,13 +515,13 @@ document.getElementById('tipos').innerHTML = GRUPOS.map(([t, r]) => `<button typ
 document.getElementById('tipos').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) vitrine(b.dataset.tipo); });
 document.getElementById('vitrine').addEventListener('click', (e) => {
   const b = e.target.closest('.item'); if (!b) return;
-  sel.value = b.dataset.i;
+  sel.value = b.dataset.i; mexeu.produto = true;
   document.querySelectorAll('#vitrine .item').forEach((x) => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
   contaProduto();
 });
 sel.value = String(P.findIndex((p) => p.nome.startsWith('Panettone Trufado')));
 vitrine('panettone');
-document.getElementById('qtd').addEventListener('input', contaProduto);
+document.getElementById('qtd').addEventListener('input', () => { mexeu.produto = true; contaProduto(); });
 simular(); contaProduto();
 </script>
 <div class="zap" id="zap">
@@ -529,7 +531,7 @@ simular(); contaProduto();
       <div><b>Igor</b><small>Kopenhagen Niterói · Empresas</small></div>
       <button class="zap-fecha" type="button" aria-label="Fechar">×</button>
     </div>
-    <div class="zap-corpo"><p class="zap-msg">Oi! Sou o Igor, da Kopenhagen Niterói. Vou montar a proposta de Natal da sua empresa. Me diz seu nome e WhatsApp que a conversa já abre comigo.</p></div>
+    <div class="zap-corpo"><p class="zap-msg">Oi! Sou o Igor, da Kopenhagen Niterói. Vou montar a proposta de Natal da sua empresa. Me diz seu nome e WhatsApp que a conversa já abre comigo, com a sua simulação se você fez uma.</p></div>
     <form class="zap-form" novalidate>
       <input name="nome" type="text" autocomplete="name" placeholder="Seu nome" aria-label="Seu nome" maxlength="80">
       <input name="empresa" type="text" autocomplete="organization" placeholder="Empresa (opcional)" aria-label="Empresa" maxlength="80">
@@ -564,8 +566,9 @@ simular(); contaProduto();
     if (nome.length < 2) { erro.textContent = 'Diga seu nome.'; return; }
     if (wa.length < 10 || wa.length > 11) { erro.textContent = 'Confira o WhatsApp com DDD.'; return; }
     if (typeof fbq === 'function') { fbq('track', 'Contact', { origem: 'chat' }); fbq('track', 'Lead', { content_category: 'Chat Igor' }); }
-    // contato direto: mensagem neutra, sem a simulação (os campos vêm pré-preenchidos e não são escolha da pessoa)
-    var corpo = mensagem('chat').replace(/^Olá!\s*/, '');
+    // leva a simulação da aba aberta só se a pessoa simulou; senão, mensagem neutra (mensagem() decide)
+    var aba = document.querySelector('.abas button.on'), origem = aba ? aba.dataset.aba : 'chat';
+    var corpo = mensagem(origem).replace(/^Olá!\s*/, '');
     var texto = 'Olá! Sou ' + nome.split(' ')[0] + (emp ? ', da ' + emp : '') + '. ' + corpo;
     window.ultimaMsgChat = texto;
     var link = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto);
