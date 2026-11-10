@@ -12,6 +12,7 @@ if (PIXEL_ID) {
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', PIXEL_ID); fbq('track', 'PageView');
 }
+try { if (/[?&]eu=1/.test(location.search)) localStorage.setItem("kop-eu", "1"); if (localStorage.getItem("kop-eu")) { GTAG_ID = ""; PIXEL_ID = ""; } } catch (e) {}
 if (GTAG_ID) { // snippet do Google, como veio: a configuração do GA4 mora no contêiner
   var gs = document.createElement('script'); gs.async = true; gs.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTAG_ID; document.head.appendChild(gs);
   window.dataLayer = window.dataLayer || []; window.gtag = function () { dataLayer.push(arguments); };
@@ -224,5 +225,20 @@ function medir(meta, ga, params) {
   </footer>
 
 </main>
+<script>
+/* Leitura da proposta no GA4 (G-K3N4SBQF5Y): proposta_aberta ao abrir, proposta_lida com 75% da página
+   ou 40 s na aba, proposta_contato no WhatsApp do Igor. Parâmetro proposta=proart. */
+(function () {
+  if (typeof gtag !== 'function') return;
+  var P = { proposta: 'proart' }, lida = false;
+  gtag('event', 'proposta_aberta', P);
+  function ler(como) { if (lida) return; lida = true; gtag('event', 'proposta_lida', { proposta: 'proart', como: como }); }
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement; if ((h.scrollTop + innerHeight) / h.scrollHeight >= 0.75) ler('rolagem');
+  }, { passive: true });
+  var visivel = 0; setInterval(function () { if (!document.hidden && ++visivel === 40) ler('tempo'); }, 1000);
+  document.querySelectorAll('a.zap').forEach(function (a) { a.addEventListener('click', function () { gtag('event', 'proposta_contato', P); }); });
+})();
+</script>
 </body>
 </html>
