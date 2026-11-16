@@ -433,11 +433,11 @@ function simular() {
   const um = P.map((p) => ({ itens: [p], c: custo([p], N) })).filter((x) => x.c.liq <= V).sort((a, b) => b.c.liq - a.c.liq);
   const pan = um.filter((x) => x.itens[0].tipo === 'panettone'), cx = um.filter((x) => x.itens[0].tipo === 'caixa');
   const sug = [];
+  // só sugere o que cabe na verba: se nenhum panettone cabe, entra o melhor item de Natal que caiba,
+  // e o panettone vira convite no banner "Aumente sua verba" (quando a diferença é alcançável)
+  const nat = um.filter((x) => x.itens[0].tipo === 'natal');
   if (pan[0]) sug.push({ tag: 'Natal', ...pan[0] });
-  else { // panettone sempre aparece: se nenhum cabe, o mais barato, mostrando quanto passa da verba
-    const pb = P.filter((p) => p.tipo === 'panettone').map((p) => ({ itens: [p], c: custo([p], N) })).sort((a, b) => a.c.liq - b.c.liq)[0];
-    if (pb) sug.push({ tag: pb.c.liq - V <= V * 0.35 ? 'Panettone · com um pouco mais' : 'Panettone', acima: true, ...pb });
-  }
+  else if (nat[0]) sug.push({ tag: 'Natal', ...nat[0] });
   if (cx[0]) sug.push({ tag: 'Caixa de bombons', ...cx[0] });
   // kit: panettone + um item de linha, a dupla que mais aproveita a verba
   let kit = null;
@@ -462,7 +462,9 @@ function simular() {
   // aumente sua verba: o presente mais barato que custe 12% a mais na loja que o melhor, se a verba extra for até 35%
   const ref = top.itens.length === 1 ? top.itens[0] : null, base = top.c.bruto / N;
   const acima = P.filter((p) => ['panettone', 'caixa'].includes(p.tipo) && p !== ref).map((p) => ({ p, c: custo([p], N) })).filter((x) => x.p.preco >= base * 1.12).sort((a, b) => a.c.liq - b.c.liq);
-  const alvo = acima[0];
+  // sem panettone na verba, o convite prioriza o panettone mais barato
+  const panAcima = !pan[0] ? acima.find((x) => x.p.tipo === 'panettone') : null;
+  const alvo = panAcima && panAcima.c.liq - V <= V * 0.35 ? panAcima : acima[0];
   if (alvo && alvo.c.liq - V <= V * 0.35) {
     const extra = Math.max(100, Math.ceil((alvo.c.liq - V) / 100) * 100);
     const faixa = alvo.c.d > top.c.d + 0.001 ? ` e o desconto sobe para <b>${pct(alvo.c.d)}</b>` : '';
