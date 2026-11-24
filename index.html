@@ -497,9 +497,8 @@ function abrirWhats(texto) {
 document.getElementById('cards').addEventListener('click', (e) => {
   const c = e.target.closest('.card'); if (!c || !estado.verba) return;
   const s = estado.verba.sug[+c.dataset.sug];
-  medir('Contact', 'contato_whatsapp', { origem: 'sugestao', opcao: s.tag });
   estado.ultimaEncomenda = encomenda(s, estado.verba.N);
-  abrirWhats(estado.ultimaEncomenda);
+  window.abrirChat('sugestao', estado.ultimaEncomenda);
 });
 // a simulação só entra na mensagem se a pessoa mexeu nela (os campos vêm pré-preenchidos)
 const mexeu = { verba: false, produto: false };
@@ -516,8 +515,7 @@ function mensagem(origem) {
 }
 document.querySelectorAll('[data-wa]').forEach((a) => a.addEventListener('click', (e) => {
   e.preventDefault();
-  medir('Contact', 'contato_whatsapp', { origem: a.dataset.wa });
-  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem(a.dataset.wa))}`, '_blank');
+  window.abrirChat(a.dataset.wa, mensagem(a.dataset.wa));
 }));
 
 document.querySelectorAll('.abas button').forEach((b) => b.addEventListener('click', () => {
@@ -563,9 +561,10 @@ simular(); contaProduto();
       <input name="nome" type="text" autocomplete="name" placeholder="Seu nome" aria-label="Seu nome" maxlength="80">
       <input name="empresa" type="text" autocomplete="organization" placeholder="Empresa (opcional)" aria-label="Empresa" maxlength="80">
       <input name="whatsapp" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Seu WhatsApp com DDD" aria-label="Seu WhatsApp com DDD">
+      <input name="site" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <p class="zap-erro" role="alert"></p>
       <button class="zap-ir" type="submit"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-1-2.2-1-.3-.1-.5-.2-.7.1l-1 1.3c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.8 5.1 2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.2-.6-.4z"/></svg>Conversar no WhatsApp</button>
-      <p class="zap-lgpd">Seu nome e WhatsApp servem só para o Igor te responder.</p>
+      <p class="zap-lgpd">Seu nome e WhatsApp servem só para o Igor te responder, mesmo se a conversa não abrir.</p>
     </form>
   </div>
   <span class="zap-dica"><img src="img/igor-avatar.svg" alt="" width="28" height="28"><span id="zap-dica-txt">Fale com a gente</span></span>
@@ -576,9 +575,19 @@ simular(); contaProduto();
   'use strict';
   var zap = document.getElementById('zap');
   var bt = zap.querySelector('.zap-bt'), f = zap.querySelector('.zap-form'), erro = zap.querySelector('.zap-erro'), tel = f.whatsapp;
-  function abrir(s) {
+  // 24/11/2026: todo caminho para o WhatsApp passa por aqui. O contato é gravado antes de abrir o WhatsApp,
+  // porque o clique no wa.me não garante que a pessoa aperte enviar (6 cliques e nenhuma mensagem até 23/11).
+  var pendente = null;
+  function abrir(s, origem, texto) {
     zap.classList.toggle('aberto', s); zap.classList.remove('dica'); bt.setAttribute('aria-expanded', s);
-    if (s) { medir('AbriuChat', 'abriu_chat'); setTimeout(function () { f.nome.focus({ preventScroll: true }); }, 50); }
+    if (s) { pendente = origem ? { origem: origem, texto: texto || '' } : null; medir('AbriuChat', 'abriu_chat', { origem: origem || 'botao_flutuante' }); setTimeout(function () { f.nome.focus({ preventScroll: true }); }, 50); }
+  }
+  window.abrirChat = function (origem, texto) { abrir(true, origem, texto); };
+  var CAPTURA = 'https://di-leads.up.railway.app/api/cliente/lead';
+  function registrar(d) {
+    var corpo = JSON.stringify(d);
+    try { if (navigator.sendBeacon && navigator.sendBeacon(CAPTURA, new Blob([corpo], { type: 'text/plain' }))) return; } catch (e) {}
+    try { fetch(CAPTURA, { method: 'POST', body: corpo, headers: { 'Content-Type': 'text/plain' }, keepalive: true, mode: 'cors' }); } catch (e) {}
   }
   bt.addEventListener('click', function () { abrir(!zap.classList.contains('aberto')); });
   zap.querySelector('.zap-fecha').addEventListener('click', function () { abrir(false); });
@@ -592,12 +601,14 @@ simular(); contaProduto();
     var nome = f.nome.value.trim(), emp = f.empresa.value.trim(), wa = tel.value.replace(/\D/g, '');
     if (nome.length < 2) { erro.textContent = 'Diga seu nome.'; return; }
     if (wa.length < 10 || wa.length > 11) { erro.textContent = 'Confira o WhatsApp com DDD.'; return; }
-    medir('Contact', 'contato_whatsapp', { origem: 'chat' }); medir('Lead', 'generate_lead', { origem: 'chat' });
+    if (f.site && f.site.value) return;
     // leva a simulação da aba aberta só se a pessoa simulou; senão, mensagem neutra (mensagem() decide)
-    var aba = document.querySelector('.abas button.on'), origem = aba ? aba.dataset.aba : 'chat';
-    var corpo = mensagem(origem).replace(/^Olá!\s*/, '');
+    var aba = document.querySelector('.abas button.on'), origem = pendente ? pendente.origem : 'chat';
+    var corpo = (pendente && pendente.texto ? pendente.texto : mensagem(aba ? aba.dataset.aba : 'chat')).replace(/^Olá!\s*/, '');
     var texto = 'Olá! Sou ' + nome.split(' ')[0] + (emp ? ', da ' + emp : '') + '. ' + corpo;
     window.ultimaMsgChat = texto;
+    medir('Contact', 'contato_whatsapp', { origem: origem }); medir('Lead', 'generate_lead', { origem: origem });
+    registrar({ nome: nome, empresa: emp, whatsapp: wa, origem: origem, mensagem: texto, pagina: location.pathname, fonte: (location.search || '').slice(0, 250) + (document.referrer ? ' ref ' + document.referrer.slice(0, 80) : ''), site: f.site ? f.site.value : '' });
     var link = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto);
     if (matchMedia('(min-width:900px)').matches) window.open(link, '_blank', 'noopener'); else location.href = link;
     abrir(false);
